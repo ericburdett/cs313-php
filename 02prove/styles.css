@@ -1,0 +1,42 @@
+h1 {
+    color:#005993
+}
+
+img {
+    height: 400px;
+    width: 267px;
+}
+
+body {
+    margin-left:10px;
+    margin-right:10px;
+}
+
+#jazz {
+    height: 200px;
+    width: 400px;
+}
+
+#cards {
+    height: 200px;
+    width: 210px;
+}
+
+#cougs {
+    height: 200px;
+    width: 308px
+}
+
+.col-md-4 {
+    text-align: center;
+}
+
+#jazzVideo {
+    display: none;
+    text-align: center;
+}
+
+#cardsVideo {
+    display: none;
+    text-align: center;
+}
