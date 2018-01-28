@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Form Validation</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="style05.css" />
+
+    <script>
+        var jersey = false;
+        var hat = false;
+        var socks = false;
+        var lanyard = false;
+
+        function putBorder(pic, item) {
+            if (!pic.style.border) {
+                pic.style.border = "3px solid #FCA104";
+            } else {
+                pic.style.border = '';
+            }
+            
+            if (item == "jersey")
+                jersey = toggleTF(jersey);
+            else if (item == "hat")
+                hat = toggleTF(hat);
+            else if (item == "socks")
+                socks = toggleTF(socks);
+            else
+                lanyard = toggleTF(lanyard);
+
+            var cost = 0.0;
+            var itemString = "";
+
+            if (jersey == true) {
+                cost += 49.99;
+                itemString += " Jersey($49.99)<br />"
+            }
+            if (hat == true) {
+                cost += 25.99;
+                itemString += " Hat($25.99)<br />"
+            }
+            if (socks == true) {
+                cost += 7.99;
+                itemString += " Socks($7.99)<br />"
+            }
+            if (lanyard == true) {
+                cost += 12.49;
+                itemString += " Lanyard($12.49)<br />"
+            }
+
+            document.getElementById('items').value = itemString;
+            document.getElementById('cost').value = cost;
+        }
+
+        function revealForm() {
+            if (jersey || hat || socks || lanyard) {
+                document.getElementById('error').style.display = 'inline';
+                document.getElementById('form').style.display = 'block';
+                document.getElementById('theButton').innerHTML = '';
+            }
+            else
+                document.getElementById('error').innerHTML = '*Please select an item.';
+        }
+
+        function toggleTF(condition) {
+            if (condition == true)
+                return false;
+            else
+                return true;
+        }
+
+        function calcPrice() {
+            var jPrice = 0.0;
+            var hPrice = 0.0;
+            var sPrice = 0.0;
+            var lPrice = 0.0;
+            if (jersey)
+                jPrice = 49.99;
+            if (hat)
+                hPrice = 25.99;
+            if (socks)
+                sPrice = 7.99;
+            if (lanyard)
+                lPrice = 12.49;
+
+            var total = jPrice + hPrice + sPrice + lPrice;
+
+            document.getElementById('total').innerHTML = '$' + total.toFixed(2);
+        }
+        
+        function validate() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var address = document.getElementById('address').value;
+            var phone = document.getElementById('phone').value.toString();
+            var ccNumber = document.getElementById('ccNumber').value.toString();
+            var month = document.getElementById('month').value;
+            var year = document.getElementById('year').value;
+            var visa = document.getElementById('visa').checked;
+            var mastercard = document.getElementById('mastercard').checked;
+            var amex = document.getElementById('amex').checked;
+            var valid = true;
+
+            //VALIDATE EXPIRATION MONTH/YEAR
+            if (month < 1 || month > 12 || year < 2016) {
+                document.getElementById('ccExpError').style.display = 'block';
+                document.getElementById('ccExpError').innerHTML = '*Please enter a valid expiration date.';
+                document.getElementById('ccExpError').focus();
+                valid = false;
+            }
+            else {
+                document.getElementById('ccExpError').style.display = 'inline';
+                document.getElementById('ccExpError').innerHTML = '';
+            }
+
+            //VALIDATE CREDIT CARD NUMBER
+            test = ccNumber.search(/^\d{16}$/);
+            if (test != 0) {
+                document.getElementById('ccNumberError').style.display = 'block';
+                document.getElementById('ccNumberError').innerHTML = '*Please enter a valid credit card number.';
+                document.getElementById('ccNumber').focus();
+                valid = false;
+            }
+            else {
+                document.getElementById('ccNumberError').style.display = 'inline';
+                document.getElementById('ccNumberError').innerHTML = '';
+            }
+
+            //VALIDATE CREDIT CARD TYPE - MAKE SURE RADIO BUTTON IS SELECTED
+            if (visa || mastercard || amex) {
+                document.getElementById('ccTypeError').style.display = 'inline';
+                document.getElementById('ccTypeError').innerHTML = '';
+            }
+            else {
+                document.getElementById('ccTypeError').style.display = 'block';
+                document.getElementById('ccTypeError').innerHTML = '*Please select a credit card type.';
+                valid = false;
+            }
+
+            //VALIDATE PHONE NUMBER
+            var test = phone.search(/^\d{3}.\d{3}.\d{4}$/);
+            if (test != 0) {
+                document.getElementById('phoneError').style.display = 'block';
+                document.getElementById('phoneError').innerHTML = '*Please enter a valid phone number.<br>Ex: xxx-xxx-xxxx';
+                document.getElementById('phone').focus();
+                valid = false;
+            }
+            else {
+                document.getElementById('phoneError').style.display = 'inline';
+                document.getElementById('phoneError').innerHTML = '';
+            }
+
+            //VALIDATE ADDRESS
+            if (address == '') {
+                document.getElementById('addressError').style.display = 'block';
+                document.getElementById('addressError').innerHTML = '*Please enter an address.';
+                document.getElementById('address').focus();
+                valid = false;
+            }
+            else {
+                document.getElementById('addressError').style.display = 'inline';
+                document.getElementById('addressError').innerHTML = '';
+            }
+
+            //VALIDATE LAST NAME
+            if (lastName == '') {
+                document.getElementById('lastNameError').style.display = 'block';
+                document.getElementById('lastNameError').innerHTML = '*Please enter a last name.';
+                document.getElementById('lastName').focus();
+                valid = false;
+            }
+            else {
+                document.getElementById('lastNameError').style.display = 'inline';
+                document.getElementById('lastNameError').innerHTML = '';
+            }
+
+            //VALIDATE FIRST NAME
+            if (firstName == '')
+            {
+                document.getElementById('firstNameError').style.display = 'block';
+                document.getElementById('firstNameError').innerHTML = '*Please enter a first name.';
+                document.getElementById('firstName').focus();
+                valid = false;
+            }
+            else
+            {
+                document.getElementById('firstNameError').style.display = 'inline';
+                document.getElementById('firstNameError').innerHTML = '';
+            }
+
+            if (jersey || hat || socks || lanyard)
+            {
+                console.log("true");
+                document.getElementById('error2').style.display = 'inline'
+                document.getElementById('error2').innerHTML = '';
+            }
+            else
+            {
+                console.log("false");
+                document.getElementById('error2').style.display = 'block';
+                document.getElementById('error2').innerHTML = '*Please select an item.';
+                scroll(0, 0);
+                valid = false;
+            }
+
+            if (!valid)
+                return false;
+            else
+                return true;
+
+        }
+
+    </script>
+</head>
+<body>
+    <header>
+        <a href="assign10.html"><img src="newJazz.gif" height="80" width="151" style="float:left; padding:0; margin:0;" /></a>
+            <ul>
+                <li><a href="assign10.html"><span id="navMen">Home</span></a></li>
+                <li><a href="http://www.nba.com/"><span id="navMen">NBA.com</span></a></li>
+            </ul>
+    </header>
+    <h1>Select items to purchase:</h1>
+
+    <div id="apparel">
+        <input id="pic" type="image" src="jazzJersey.jpg" onclick="putBorder(this, 'jersey'), calcPrice()" />
+        <input id="pic" type="image" src="jazzHat.jpg" onclick="putBorder(this, 'hat'), calcPrice()" />
+        <input id="pic" type="image" src="jazzSocks.jpg" onclick="putBorder(this, 'socks'), calcPrice()" />
+        <input id="pic" type="image" src="jazzLanyard.jpg" onclick="putBorder(this, 'lanyard'), calcPrice()" />
+    </div>
+    <br /><br />
+    <div id="theButton" style="text-align:center;">
+        <input type="button" id="button" value="Purchase Items" onclick="revealForm(), calcPrice()"/>
+        <div id="error" class="error"></div>
+    </div>
+    
+    <div id="error2" class="error" style="display:inline"></div><br />
+
+    <div id="form" style="display:none;">
+        <form class="fontcolor" method="post" action="assign10Confirm.php">
+            Total Price: <div id="total">$0.00</div><br />
+            
+            First Name:<br />
+            <input type="text" id="firstName" name="first" class="inputField" /><br />
+            <div id="firstNameError" class="error" style="display:inline;"></div><br />
+            
+            Last Name:<br />
+            <input type="text" id="lastName" name="last" class="inputField" /><br />
+            <div id="lastNameError" class="error" style="display:inline;"></div><br />
+            
+            Address:<br />
+            <textarea id="address" name="address" class="inputField" style="border:2px solid #284E34;"></textarea><br />
+            <div id="addressError" class="error" style="display:inline;"></div><br />
+            
+            Phone:<br />
+            <input type="text" id="phone" name="phone" class="inputField" /><br />
+            <div id="phoneError" class="error" style="display:inline;"></div><br />
+            
+            Credit Card Type:<br />
+            <div style="font-size:25px;">
+                <input type="radio" name="ccType" id="visa" value="Visa"  style="vertical-align:middle;" />Visa<br />
+                <input type="radio" name="ccType" id="mastercard" value="MasterCard"  style="vertical-align:middle;" />MasterCard<br />
+                <input type="radio" name="ccType" id="amex" value="AmericanExpress"  style="vertical-align:middle;" />American Express<br />
+                <div id="ccTypeError" class="error" style="display:inline;"></div><br />
+            </div>
+            <div id="ccTypeError" class="error" style="display:inline;"></div>
+            
+            Credit Card Number:<br />
+            <input type="text" id="ccNumber" name="ccNumber"class="inputField" maxlength="16"/><br />
+            <div id="ccNumberError" class="error" style="display:inline;"></div><br />
+            
+            Credit Card Expiration Date:<br />
+            Month: <input type="text" id="month" name="month" maxlength="2" size="2" class="inputField" style="text-align:center;" /><br />
+            Year: <input type="text" id="year" name="year" maxlength="4" size="4" class="inputField" style="text-align:center;" /><br />
+            <div id="ccExpError" class="error" style="display:inline;"></div><br />
+           
+            <input type="submit" id="button" value="Submit" onclick="return validate()" />
+            <input type="reset" id="button" value="Reset"/>
+            <div id="test9"></div>
+            <br /><br />
+            <input type="text" id="items" name="items" display="inline" hidden />
+            <input type="text" id="cost" name="cost" display="inline" hidden />
+        </form>
+    </div>
+</body>
+</html>
+
+<!--<form action = ""> 
+    onsubmit="return validate()"
+
+
+    /^\d{3}.\d{3}.\d{4}$/
+
+    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+        
+    <script> tags should be in the head tag-->

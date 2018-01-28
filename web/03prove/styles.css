@@ -1,0 +1,21 @@
+input[type="image"] {
+    height: 235px;
+    width: 200px;
+}
+
+.col-md-3 {
+    text-align: center;
+}
+
+h6 {
+    text-align: center;
+    color: red;
+}
+
+h2, h4 {
+    display:inline;
+}
+
+input[src="images/remove.png"] {
+    margin:8px;
+}

@@ -10,7 +10,7 @@
 
   <body>
     <div style="margin:10px"> 
-       <h3>Coming Soon!</h3>
+       <a href="../03prove">Shopping Cart</a>
     </div>
   </body>
 
