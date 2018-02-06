@@ -16,13 +16,11 @@ try
     $dbURL = getenv('DATABASE_URL');
 
     if (empty($dbURL)) {
-        echo 'Empty!';
         $user = 'postgres';
         $password = 'admin';
         $db = new PDO('pgsql:host=127.0.0.1;dbname=hp',$user,$password);
     }
     else {
-        echo 'Not Empty';
         $dbopts = parse_url($dbURL);
     
         $dbHost = $dbopts["host"];
