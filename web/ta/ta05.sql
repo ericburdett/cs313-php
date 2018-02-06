@@ -1,4 +1,4 @@
-\c ta05
+--\c ta05
 
 CREATE TABLE scriptures (
     id SERIAL CONSTRAINT scriptures_pk PRIMARY KEY,
