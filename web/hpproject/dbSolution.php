@@ -13,7 +13,7 @@ require 'header.php';
 <?php
 try
 {
-    $dbUrl = getenv('DATABASE_URL');
+    $dbUrl = $_SERVER['DATABASE_URL'];
 
     if (empty($dbURL)) {
         echo 'Empty!';
