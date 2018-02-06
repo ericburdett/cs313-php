@@ -13,7 +13,7 @@ require 'header.php';
 <?php
 try
 {
-    $dbUrl = getenv('DATABASE_URL');
+    $dbURL = getenv('DATABASE_URL');
 
     if (empty($dbURL)) {
         $user = 'postgres';
