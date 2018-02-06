@@ -8,7 +8,8 @@
 --------------------------------------------------------------
 
 -- hp is the database we should be connected to
-\c hp
+-- Uncomment if on local machine...
+-- \c hp
 
 -- Drop all enums and tables in case the database has
 -- been built previously. This will make it much easier
