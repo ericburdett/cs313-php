@@ -31,6 +31,12 @@ try
         $dbPassword = $dbopts["pass"];
         $dbName = ltrim($dbopts["path"],'/');
 
+        echo $dbHost . "\n";
+        echo $dbPort . "\n";
+        echo $dbUser . "\n";
+        echo $dbPassword . "\n";
+        echo $dbName . "\n";
+
         $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
     }
 }
