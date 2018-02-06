@@ -22,7 +22,7 @@ try
         $db = new PDO('pgsql:host=127.0.0.1;dbname=hp',$user,$password);
     }
     else {
-        $dbopts = parse_url($dbUrl);
+        $dbopts = parse_url($dbURL);
     
         $dbHost = $dbopts["host"];
         $dbPort = $dbopts["port"];

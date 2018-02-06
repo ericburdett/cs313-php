@@ -23,19 +23,13 @@ try
     }
     else {
         echo 'Not Empty';
-        $dbopts = parse_url($dbUrl);
+        $dbopts = parse_url($dbURL);
     
         $dbHost = $dbopts["host"];
         $dbPort = $dbopts["port"];
         $dbUser = $dbopts["user"];
         $dbPassword = $dbopts["pass"];
         $dbName = ltrim($dbopts["path"],'/');
-
-        echo $dbHost . "\n";
-        echo $dbPort . "\n";
-        echo $dbUser . "\n";
-        echo $dbPassword . "\n";
-        echo $dbName . "\n";
 
         $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
     }
