@@ -13,7 +13,8 @@ require 'header.php';
 <?php
 try
 {
-    $dbUrl = getenv('DATABASE_URL',true) ?: getenv('DATABASE_URL');
+    $dbUrl = 'postgres://euorzydqbdhxga:39f5be18a29432c4f25d03048d92bc0ffffbfe7dd851110cf0b5552f332
+    8be58@ec2-107-21-236-219.compute-1.amazonaws.com:5432/dmg2ku6bjf19b';
 
     if (empty($dbURL)) {
         echo 'Empty!';
