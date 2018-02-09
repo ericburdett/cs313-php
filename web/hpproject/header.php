@@ -5,18 +5,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 
-<nav style="padding:0px" class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav style="padding:0px" class="navbar navbar-expand-sm bg-dark navbar-dark navbar-fixed-top">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li><a class="nav-link navbar-brand" href="home.php">Dashboard</a></li>
       <li class="dropdown"><a class="nav-link navbar-brand dropdown-toggle" data-toggle="dropdown" href="#">Database<span class="caret"></span></a>
         <ul class="dropdown-menu bg-dark">
           <li><a class="nav-link" href="dbCustomer.php">Customers</a></li>
-          <li><a class="nav-link" href="dbDevice.php">Devices</a></li>
+          <li><a class="nav-link" href="dbPrinter.php">Printers</a></li>
+          <li><a class="nav-link" href="dbScanner.php">Scanners</a></li>
           <li><a class="nav-link" href="dbSolution.php">Solutions</a></li>
           <li><a class="nav-link" href="dbEmployee.php">Employees</a></li>
         </ul>
@@ -28,7 +29,3 @@
     </ul>
   </div>
 </nav>
-
-<span class="glyphicon glyphicon-log-out"></span>
-
-

@@ -41,6 +41,12 @@ catch (PDOException $ex)
 
 ?>
 
+<form action="#" method="POST">
+  <input type="text" name="bookName">
+  <input type="submit">
+</form>
+
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -52,7 +58,18 @@ catch (PDOException $ex)
   </thead>
   <tbody>
 <?php
-foreach($db->query('SELECT * FROM scriptures') as $row)
+
+$whereClause = '';
+
+$myQuery = 'SELECT * FROM scriptures';
+
+//Look at PDO Bind Value example!
+
+if (isset($_POST['bookName'])) {
+    $myQuery .= ' WHERE book LIKE \'' . $_POST['bookName'] . '%\'';
+}
+
+foreach($db->query($myQuery) as $row)
 {
     echo '<tr>';
     echo '<td>' . $row['book'] . '</td>';
