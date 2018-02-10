@@ -1,5 +1,5 @@
 <?php
-session_start()
+session_start();
 ?>
 <html>
 <head>
@@ -110,11 +110,7 @@ if (isset($myCol) && !empty($myCol)) {
     }
 }
 
-echo "<h1>$myVal</h1>";
-
 $stmt->execute();
-//For Testing
-
 
 foreach($stmt->fetchAll() as $row)
     {

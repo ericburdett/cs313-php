@@ -1,6 +1,3 @@
-<?php
-session_start()
-?>
 <html>
 <head>
 </head>
@@ -10,14 +7,6 @@ require 'header.php';
 ?>
 
 <body>
-<?php
-
-
-
-
-?>
-
-
 
 </body>
 
