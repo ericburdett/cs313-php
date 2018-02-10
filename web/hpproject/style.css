@@ -1,6 +1,5 @@
 .marg {
-    margin: 5px;
-    margin-top: 10px;
+    margin: 10px 5px 5px 5px;
 }
 
 .btn {
@@ -36,6 +35,21 @@
     margin: 0 auto;
 }
 
+.row {
+    padding: 15px 15px 15px 15px;
+}
+
+h4 {
+    color:white;
+}
+
+.card {
+    border-color:#343A40;
+}
+
+.card-header {
+    border-color:#343A40;
+}
 
  /* 
   .Absolute-Center.is-Responsive {

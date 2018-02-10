@@ -675,13 +675,6 @@ INSERT INTO customer_employee VALUES
 INSERT INTO customer_employee VALUES
 (
     DEFAULT,
-    2,
-    1
-);
-
-INSERT INTO customer_employee VALUES
-(
-    DEFAULT,
     3,
     3
 );
@@ -1011,3 +1004,5 @@ FROM customer "c" INNER JOIN customer_printer "cp"
 ON c.id = cp.customer_id INNER JOIN printer "p"
 ON p.id = cp.printer_id
 WHERE c.name = 'BYU-Idaho';
+
+

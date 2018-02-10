@@ -11,36 +11,7 @@ require 'header.php';
 ?>
 
 <div class="marg">
-
 <body>
-<?php
-try
-{
-    $dbURL = getenv('DATABASE_URL');
-
-    if (empty($dbURL)) {
-        $user = 'postgres';
-        $password = 'admin';
-        $db = new PDO('pgsql:host=127.0.0.1;dbname=hp',$user,$password);
-    }
-    else {
-        $dbopts = parse_url($dbURL);
-    
-        $dbHost = $dbopts["host"];
-        $dbPort = $dbopts["port"];
-        $dbUser = $dbopts["user"];
-        $dbPassword = $dbopts["pass"];
-        $dbName = ltrim($dbopts["path"],'/');
-
-        $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-    }
-}
-catch (PDOException $ex)
-{
-    echo 'Error!: ' . $ex->getMessage();
-    die();
-}
-?>
 
 <h2>Customers</h2>
 <form action="#" method="GET">
@@ -55,7 +26,6 @@ catch (PDOException $ex)
   <input type="submit" class="btn btn-primary btn-md">
   <a href="dbCustomer.php" class="btn btn-primary btn-md" role="button">Reset</a>
 </form>
-
 
 <table class="table table-striped">
   <thead>
