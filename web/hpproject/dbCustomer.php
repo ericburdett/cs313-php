@@ -175,7 +175,7 @@ foreach($stmt->fetchAll() as $row)
                 foreach($stmt0->fetchAll() AS $row0)
                 {
                     $main = 'No';
-                    if ($row['main']) {
+                    if ($row0['main']) {
                         $main = 'Yes';
                     }
                     echo '<tr>
