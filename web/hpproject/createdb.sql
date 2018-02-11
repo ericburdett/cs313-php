@@ -1005,4 +1005,28 @@ ON c.id = cp.customer_id INNER JOIN printer "p"
 ON p.id = cp.printer_id
 WHERE c.name = 'BYU-Idaho';
 
+SELECT e.name AS "name", e.email AS "email", e.type AS "type"
+FROM customer c INNER JOIN customer_employee ce
+ON c.id = ce.customer_id INNER JOIN employee e
+ON ce.employee_id = e.id
+WHERE c.id = 1;
+
+
+SELECT p.model_name AS "name", cp.qty_in_fleet AS "qty", cp.fs4 AS "fs4", cp.notes as "notes"
+FROM customer c INNER JOIN customer_printer cp
+ON c.id = cp.customer_id INNER JOIN printer p
+ON p.id = cp.printer_id
+WHERE c.id = 1;
+
+SELECT s.model_name AS "name", cs.qty_in_fleet AS "qty", cs.fs4 AS "fs4", cs.notes AS "notes"
+FROM customer c INNER JOIN customer_scanner cs
+ON c.id = cs.customer_id INNER JOIN scanner s
+ON s.id = cs.scanner_id
+WHERE c.id = 1;
+
+SELECT s.name AS "name", cs.version AS "version", cs.qty_licenses AS "qty", cs.notes AS "notes"
+FROM customer c INNER JOIN customer_solution cs
+ON c.id = cs.customer_id INNER JOIN solution s
+ON s.id = cs.solution_id
+WHERE c.id = 1;
 
