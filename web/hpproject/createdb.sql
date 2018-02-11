@@ -80,7 +80,7 @@ CREATE TABLE customer_contact (
     email VARCHAR(250),
     business_phone VARCHAR(50),
     mobile_phone VARCHAR(50),
-    main_contact yn,
+    main_contact BOOLEAN,
     notes VARCHAR(8000),
     CONSTRAINT customer_contact_fk2 FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
@@ -297,7 +297,7 @@ INSERT INTO customer_contact VALUES
     'hjeyring@byui.edu',
     'XXX-XXX-XXXX',
     NULL,
-    'Yes',
+    true,
     'Son of an apostle.'
 );
 
@@ -311,7 +311,7 @@ INSERT INTO customer_contact VALUES
     'nelsonrm@ldschurch.org',
     'XXX-XXX-XXXX',
     'XXX-XXX-XXXX',
-    'No'
+    false
 );
 
 INSERT INTO customer_contact VALUES
@@ -324,7 +324,7 @@ INSERT INTO customer_contact VALUES
     'hollandjr@ldschurch.org',
     'XXX-XXX-XXXX',
     'XXX-XXX-XXXX',
-    'Yes'
+    true
 );
 
 INSERT INTO customer_contact VALUES
@@ -337,7 +337,7 @@ INSERT INTO customer_contact VALUES
     'kasper@adidas.com',
     'XXX-XXX-XXX-XXXX',
     NULL,
-    'Yes'
+    true
 );
 
 INSERT INTO customer_contact VALUES
@@ -350,7 +350,7 @@ INSERT INTO customer_contact VALUES
     'daddybucky@rulethesouth.org',
     'XXX-XXX-XXXX',
     'XXX-XXX-XXXX',
-    'Yes'
+    true
 );
 
 INSERT INTO customer_contact VALUES
@@ -363,7 +363,7 @@ INSERT INTO customer_contact VALUES
     'coachq@utahjazz.com',
     'XXX.XXX.XXXX',
     'XXX.XXX.XXXX',
-    'Yes'
+    true
 );
 
 ------------------------------------------
@@ -1011,7 +1011,6 @@ ON c.id = ce.customer_id INNER JOIN employee e
 ON ce.employee_id = e.id
 WHERE c.id = 1;
 
-
 SELECT p.model_name AS "name", cp.qty_in_fleet AS "qty", cp.fs4 AS "fs4", cp.notes as "notes"
 FROM customer c INNER JOIN customer_printer cp
 ON c.id = cp.customer_id INNER JOIN printer p
@@ -1030,3 +1029,13 @@ ON c.id = cs.customer_id INNER JOIN solution s
 ON s.id = cs.solution_id
 WHERE c.id = 1;
 
+SELECT ce.name AS "name", ce.title AS "title", ce.email AS "email", ce.business_phone AS "business", ce.mobile_phone AS "mobile", ce.main_contact AS "main", ce.notes AS "notes"
+FROM customer c INNER JOIN customer_contact ce
+ON c.id = ce.customer_id
+WHERE c.id = 1;
+
+SELECT l.address AS "address", l.city AS "city", l.state AS "state", l.zip AS "zip", l.country AS "country"
+FROM customer c INNER JOIN customer_location cl
+ON c.id = cl.customer_id INNER JOIN location l
+ON l.id = cl.location_id 
+WHERE c.id = 1;

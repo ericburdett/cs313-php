@@ -68,6 +68,14 @@ $counter = 0;
 
 foreach($stmt->fetchAll() as $row)
 {
+    //Query for Customer Contacts
+    $stmt0 = $db->prepare('SELECT ce.name AS "name", ce.title AS "title", ce.email AS "email", ce.business_phone AS "business", ce.mobile_phone AS "mobile", ce.main_contact AS "main", ce.notes AS "notes"
+                           FROM customer c INNER JOIN customer_contact ce
+                           ON c.id = ce.customer_id
+                           WHERE c.id = :id');
+    $stmt0->bindValue(':id',$row['id'], PDO::PARAM_INT);
+    $stmt0->execute();
+
     //Query for Employees
     $stmt2 = $db->prepare('SELECT e.name AS "name", e.email AS "email", e.type AS "type"
                            FROM customer c INNER JOIN customer_employee ce
@@ -104,6 +112,15 @@ foreach($stmt->fetchAll() as $row)
     $stmt5->bindValue(':id',$row['id'], PDO::PARAM_INT);
     $stmt5->execute();
 
+    //Query for Locations
+    $stmt6 = $db->prepare('SELECT l.address AS "address", l.city AS "city", l.state AS "state", l.zip AS "zip", l.country AS "country"
+                           FROM customer c INNER JOIN customer_location cl
+                           ON c.id = cl.customer_id INNER JOIN location l
+                           ON l.id = cl.location_id 
+                           WHERE c.id = :id');
+    $stmt6->bindValue(':id',$row['id'], PDO::PARAM_INT);
+    $stmt6->execute();
+
 
     echo '<div id="accordian">
             <div class="card bg-dark marg">
@@ -138,6 +155,70 @@ foreach($stmt->fetchAll() as $row)
                   </tr>
                 </tbody>
               </table>
+              <h5>Contacts:</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Email</th>
+                    <th>Business Phone</th>
+                    <th>Mobile Phone</th>
+                    <th>Main Contact</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>';
+
+//                $add_counter = 1;
+//                Possibly change format for address
+                foreach($stmt0->fetchAll() AS $row0)
+                {
+                    $main = 'No';
+                    if ($row['main']) {
+                        $main = 'Yes';
+                    }
+                    echo '<tr>
+                            <td>' . $row0['name'] . '</td>
+                            <td>' . $row0['title'] . '</td>
+                            <td>' . $row0['email'] . '</td>
+                            <td>' . $row0['business'] . '</td>
+                            <td>' . $row0['mobile'] . '</td>
+                            <td>' . $main . '</td>
+                            <td>' . $row0['notes'] . '</td>
+                          </tr>';
+                }
+
+    echo       '</tbody>
+              </table>
+              <h5>Locations:</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Country</th>
+                  </tr>
+                </thead>
+                <tbody>';
+
+                foreach($stmt6->fetchAll() AS $row6)
+                {
+                    echo '<tr>
+                            <td>' . $row6['address'] . '</td>
+                            <td>' . $row6['city'] . '</td>
+                            <td>' . $row6['state'] . '</td>
+                            <td>' . $row6['zip'] . '</td>
+                            <td>' . $row6['country'] . '</td>
+                          </tr>';
+                }
+
+
+    echo       '</tbody>
+              </table>
+              
               <h5>Employees:</h5>
               <table class="table table-bordered">
                 <thead>
