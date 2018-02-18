@@ -344,13 +344,10 @@ foreach($stmt->fetchAll() as $row)
     echo '</div>';
     */   
 }
-
 ?>
 
-<!--
-  </tbody>
-</table>
--->
+
+
 
 </body>
 </div>

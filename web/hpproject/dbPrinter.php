@@ -10,6 +10,14 @@ require 'header.php';
 //require 'dbHeader.php';
 ?>
 
+
+
+
+<!-- NULL VALUES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+
+
 <div class="marg">
 <body>
 <h2>Printers</h2>

@@ -92,7 +92,8 @@ CREATE TABLE employee (
     password VARCHAR(250) CONSTRAINT employee_nn3 NOT NULL,
     type employeeType,
     region regions,
-    CONSTRAINT employee_un1 UNIQUE(email)
+    CONSTRAINT employee_un1 UNIQUE(name),
+    CONSTRAINT employee_un2 UNIQUE(email)
 );
 
 CREATE TABLE customer_employee (
