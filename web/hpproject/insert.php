@@ -26,144 +26,6 @@ $firmware = $prinFirm->fetchAll();
 $solutionType = $db->prepare('SELECT unnest(enum_range(NULL::solutionType)) AS type');
 $solutionType->execute();
 
-//Inserts into DB
-
-//Customer Insert
-if (isset($_POST['cname']))
-{
-    $cname = emptyToNull($_POST['cname']);
-    $insert = $db->prepare('INSERT INTO customer VALUES
-                            (
-                                DEFAULT,
-                                :name,
-                                :phone,
-                                :region,
-                                :type,
-                                :notes
-                            )');
-      $insert->bindValue(':name',emptyToNull($_POST['cname']),PDO::PARAM_STR);
-      $insert->bindValue(':phone',emptyToNull($_POST['cphone']),PDO::PARAM_STR);
-      $insert->bindValue(':region',emptyToNull($_POST['cregion']),PDO::PARAM_STR);
-      $insert->bindValue(':type',emptyToNull($_POST['ctype']),PDO::PARAM_STR);
-      $insert->bindValue(':notes',emptyToNull($_POST['cnotes']),PDO::PARAM_STR);
-
-      if (!$insert->execute())
-      {
-          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = true;
-      }
-      else
-      {
-          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = false;
-      }
-
-}
-
-echo 'Hello World #2';
-
-  //Employee Insert
-  if (isset($_POST['ename']))
-  {
-      $insert = $db->prepare('INSERT INTO employee VALUES
-                              (
-                                  DEFAULT,
-                                  :name,
-                                  :email,
-                                  :password,
-                                  :type,
-                                  :region
-                              )');
-      $insert->bindValue(':name',emptyToNull($_POST['ename']),PDO::PARAM_STR);
-      $insert->bindValue(':email',emptyToNull($_POST['eemail']),PDO::PARAM_STR);
-      $insert->bindValue(':password',emptyToNull($_POST['epassword']),PDO::PARAM_STR);
-      $insert->bindValue(':type',emptyToNull($_POST['etype']),PDO::PARAM_STR);
-      $insert->bindValue(':region',emptyToNull($_POST['eregion']),PDO::PARAM_STR);
-      
-      if (!$insert->execute())
-      {
-          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = true;
-      }
-      else
-      {
-          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = false;
-      }
-  }
-
-  //Printer Insert
-  if (isset($_POST['pname']))
-  {
-      $insert = $db->prepare('INSERT INTO printer VALUES
-                              (
-                                  DEFAULT,
-                                  :modelName,
-                                  :class,
-                                  :firm,
-                                  :mfp,
-                                  :color,
-                                  :duplex,
-                                  :supports_sm,
-                                  :sm_inst_on_cap,
-                                  :sure_start,
-                                  :whitelisting,
-                                  :run_time_int_det,
-                                  :connection_inspector,
-                                  :is_a4
-                              )');
-      $insert->bindValue(':modelName',emptyToNull($_POST['pname']),PDO::PARAM_STR);
-      $insert->bindValue(':class',emptyToNull($_POST['pclass']),PDO::PARAM_STR);
-      $insert->bindValue(':firm',emptyToNull($_POST['pfirm']),PDO::PARAM_STR);
-      $insert->bindValue(':mfp',emptyToNull($_POST['pmfp']),PDO::PARAM_STR);
-      $insert->bindValue(':color',emptyToNull($_POST['pcolor']),PDO::PARAM_STR);
-      $insert->bindValue(':duplex',emptyToNull($_POST['pduplex']),PDO::PARAM_STR);
-      $insert->bindValue(':supports_sm',emptyToNull($_POST['psupports_sm']),PDO::PARAM_STR);
-      $insert->bindValue(':sm_inst_on_cap',emptyToNull($_POST['psm_inst_on_cap']),PDO::PARAM_STR);
-      $insert->bindValue(':sure_start',emptyToNull($_POST['psure_start']),PDO::PARAM_STR);
-      $insert->bindValue(':whitelisting',emptyToNull($_POST['pwhitelisting']),PDO::PARAM_STR);
-      $insert->bindValue(':run_time_int_det',emptyToNull($_POST['prun_time_int_det']),PDO::PARAM_STR);
-      $insert->bindValue(':connection_inspector',emptyToNull($_POST['pconnection_inspector']),PDO::PARAM_STR);
-      $insert->bindValue(':is_a4',emptyToNull($_POST['pis_a4']),PDO::PARAM_STR);
-
-      if (!$insert->execute())
-      {
-          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = true;
-      }
-      else
-      {
-          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = false;
-      }
-
-  }
-
-
-  //Solution Inserts
-  if (isset($_POST['soname'])) {
-     $insert = $db->prepare('INSERT INTO solution VALUES
-                             (
-                                DEFAULT,
-                                :name,
-                                :type
-                             )');
-     $insert->bindValue(':name',emptyToNull($_POST['soname']), PDO::PARAM_STR);
-     $insert->bindValue(':type',emptyToNull($_POST['sotype']), PDO::PARAM_STR);
-
-      if (!$insert->execute())
-      {
-          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = true;
-      }
-      else
-      {
-          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
-          $_SESSION['dbFail'] = false;
-      }
-  }
-
-
 ?>
 
 <script>
@@ -763,3 +625,152 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
+
+
+
+
+
+<?php
+
+//Inserts into DB
+
+//Customer Insert
+if (isset($_POST['cname']))
+{
+    $cname = emptyToNull($_POST['cname']);
+    $insert = $db->prepare('INSERT INTO customer VALUES
+                            (
+                                DEFAULT,
+                                :name,
+                                :phone,
+                                :region,
+                                :type,
+                                :notes
+                            )');
+      $insert->bindValue(':name',emptyToNull($_POST['cname']),PDO::PARAM_STR);
+      $insert->bindValue(':phone',emptyToNull($_POST['cphone']),PDO::PARAM_STR);
+      $insert->bindValue(':region',emptyToNull($_POST['cregion']),PDO::PARAM_STR);
+      $insert->bindValue(':type',emptyToNull($_POST['ctype']),PDO::PARAM_STR);
+      $insert->bindValue(':notes',emptyToNull($_POST['cnotes']),PDO::PARAM_STR);
+
+      if (!$insert->execute())
+      {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      }
+      else
+      {
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = false;
+      }
+
+}
+
+echo 'Hello World #2';
+
+  //Employee Insert
+  if (isset($_POST['ename']))
+  {
+      $insert = $db->prepare('INSERT INTO employee VALUES
+                              (
+                                  DEFAULT,
+                                  :name,
+                                  :email,
+                                  :password,
+                                  :type,
+                                  :region
+                              )');
+      $insert->bindValue(':name',emptyToNull($_POST['ename']),PDO::PARAM_STR);
+      $insert->bindValue(':email',emptyToNull($_POST['eemail']),PDO::PARAM_STR);
+      $insert->bindValue(':password',emptyToNull($_POST['epassword']),PDO::PARAM_STR);
+      $insert->bindValue(':type',emptyToNull($_POST['etype']),PDO::PARAM_STR);
+      $insert->bindValue(':region',emptyToNull($_POST['eregion']),PDO::PARAM_STR);
+      
+      if (!$insert->execute())
+      {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      }
+      else
+      {
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = false;
+      }
+  }
+
+  //Printer Insert
+  if (isset($_POST['pname']))
+  {
+      $insert = $db->prepare('INSERT INTO printer VALUES
+                              (
+                                  DEFAULT,
+                                  :modelName,
+                                  :class,
+                                  :firm,
+                                  :mfp,
+                                  :color,
+                                  :duplex,
+                                  :supports_sm,
+                                  :sm_inst_on_cap,
+                                  :sure_start,
+                                  :whitelisting,
+                                  :run_time_int_det,
+                                  :connection_inspector,
+                                  :is_a4
+                              )');
+      $insert->bindValue(':modelName',emptyToNull($_POST['pname']),PDO::PARAM_STR);
+      $insert->bindValue(':class',emptyToNull($_POST['pclass']),PDO::PARAM_STR);
+      $insert->bindValue(':firm',emptyToNull($_POST['pfirm']),PDO::PARAM_STR);
+      $insert->bindValue(':mfp',emptyToNull($_POST['pmfp']),PDO::PARAM_STR);
+      $insert->bindValue(':color',emptyToNull($_POST['pcolor']),PDO::PARAM_STR);
+      $insert->bindValue(':duplex',emptyToNull($_POST['pduplex']),PDO::PARAM_STR);
+      $insert->bindValue(':supports_sm',emptyToNull($_POST['psupports_sm']),PDO::PARAM_STR);
+      $insert->bindValue(':sm_inst_on_cap',emptyToNull($_POST['psm_inst_on_cap']),PDO::PARAM_STR);
+      $insert->bindValue(':sure_start',emptyToNull($_POST['psure_start']),PDO::PARAM_STR);
+      $insert->bindValue(':whitelisting',emptyToNull($_POST['pwhitelisting']),PDO::PARAM_STR);
+      $insert->bindValue(':run_time_int_det',emptyToNull($_POST['prun_time_int_det']),PDO::PARAM_STR);
+      $insert->bindValue(':connection_inspector',emptyToNull($_POST['pconnection_inspector']),PDO::PARAM_STR);
+      $insert->bindValue(':is_a4',emptyToNull($_POST['pis_a4']),PDO::PARAM_STR);
+
+      if (!$insert->execute())
+      {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      }
+      else
+      {
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = false;
+      }
+
+  }
+
+
+  //Solution Inserts
+  if (isset($_POST['soname'])) {
+     $insert = $db->prepare('INSERT INTO solution VALUES
+                             (
+                                DEFAULT,
+                                :name,
+                                :type
+                             )');
+     $insert->bindValue(':name',emptyToNull($_POST['soname']), PDO::PARAM_STR);
+     $insert->bindValue(':type',emptyToNull($_POST['sotype']), PDO::PARAM_STR);
+
+      if (!$insert->execute())
+      {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      }
+      else
+      {
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = false;
+      }
+  }
+
+
+
+
+
+?>
