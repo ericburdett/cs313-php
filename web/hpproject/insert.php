@@ -47,7 +47,7 @@ if (isset($_POST['cname']))
 
    if (!$insert->execute())
   {
-      echo '<script>  $(window).on("load", function(){ $("#error").modal("show"); });  </script>';
+      echo '<script>  $(window).on("load", function(){ $("#success").modal("show"); });  </script>';
       $_SESSION['dbFail'] = true;
   }
   else
@@ -77,7 +77,7 @@ if (isset($_POST['cname']))
       
       if (!$insert->execute())
       {
-          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
@@ -123,7 +123,7 @@ if (isset($_POST['cname']))
 
       if (!$insert->execute())
       {
-          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
@@ -149,7 +149,7 @@ if (isset($_POST['cname']))
 
       if (!$insert->execute())
       {
-          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
@@ -586,7 +586,7 @@ $(document).ready(function() {
     </div>
   </div>
 
-  <!-- Success Modal -->
+  <!-- Error Modal -->
   <div class="modal fade" id="error" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
