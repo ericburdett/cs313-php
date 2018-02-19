@@ -31,4 +31,79 @@ function insert($insert) {
     }
 }
 
+function deleteCustomer($db, $id) {
+
+  //We want our deletion to be atomic
+  $db->beginTransaction();
+
+  try {
+    $delete = $db->prepare("DELETE FROM customer_contact WHERE customer_id = :id;");
+    $delete->bindValue(':id',$id, PDO::PARAM_INT);
+
+    //Error occured. Indicate error by returning 0.
+    if(!$delete->execute()) {
+      $db->rollback();
+      return 0;
+    }
+
+    $delete = $db->prepare("DELETE FROM customer_employee WHERE customer_id = :id;");
+    $delete->bindValue(':id',$id, PDO::PARAM_INT);
+
+    if(!$delete->execute()) {
+      $db->rollback();
+      return 0;
+    }
+
+    $delete = $db->prepare("DELETE FROM customer_location WHERE customer_id = :id;");
+    $delete->bindValue(':id',$id, PDO::PARAM_INT);
+
+    if(!$delete->execute()) {
+      $db->rollback();
+      return 0;
+    }
+
+    $delete = $db->prepare("DELETE FROM customer_printer WHERE customer_id = :id;");
+    $delete->bindValue(':id',$id, PDO::PARAM_INT);
+
+    if(!$delete->execute()) {
+      $db->rollback();
+      return 0;
+    }
+
+    $delete = $db->prepare("DELETE FROM customer_scanner WHERE customer_id = :id;");
+    $delete->bindValue(':id',$id, PDO::PARAM_INT);
+
+    if(!$delete->execute()) {
+      $db->rollback();
+      return 0;
+    }
+
+    $delete = $db->prepare("DELETE FROM customer_solution WHERE customer_id = :id;");
+    $delete->bindValue(':id',$id, PDO::PARAM_INT);
+
+    if(!$delete->execute()) {
+      $db->rollback();
+      return 0;
+    }
+
+    $delete = $db->prepare("DELETE FROM customer WHERE id = :id;");
+    $delete->bindValue(':id',$id, PDO::PARAM_INT);
+
+    if(!$delete->execute()) {
+      $db->rollback();
+      return 0;
+    }
+
+    //Deletions completed successfully
+    $db->commit();
+    return 1;
+  }
+  catch (PDOException $ex) {
+    //Error occurred. Indicate the deletion did not complete.
+    $db->rollback();
+    return 0;
+  }
+}
+
+
 ?>

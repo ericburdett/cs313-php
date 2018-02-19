@@ -7,7 +7,42 @@ session_start();
 
 <?php
 require 'header.php';
+require 'functions.php';
 //require 'dbHeader.php';
+
+if (isset($_POST['rowConfId'])) {
+  echo '<form action="#" method="POST">
+          <input type="text" name="rowId" value="' . $_POST['rowConfId'] . '">
+          <input type="submit"  id="submitDelete">
+        </form>';
+
+  echo '<script>
+          $(window).on("load", function(){ $("#confirmDelete").modal("show"); });
+        </script>';
+}
+
+
+if (isset($_POST['rowId'])) {
+
+  echo 'Made it!';
+  echo $_POST['rowId'];
+
+  //Call function in "functions.php" that will delete all rows with reference to this customer
+  //Return of 0 indicates failure, 1 indicates success
+  if (deleteCustomer($db,$_POST['rowId'])) {
+    echo "if";
+    //Success
+    echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+    $_SESSION['dbFail'] = true;
+  }
+  else {
+    echo "else";
+    //Error
+    echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+    $_SESSION['dbFail'] = true;
+  }
+}
+
 ?>
 
 <div class="marg">
@@ -128,6 +163,13 @@ foreach($stmt->fetchAll() as $row)
                 <a class="card-link tabhead" data-toggle="collapse" data-parent="#accordian" href="#collapse' . $counter . '">'
                 . $row['name'] . '
                 </a>
+                <form style="display:inline" action="#" method="POST">
+                  <input type="text" hidden name="rowConfId" value="' . $row['id'] . '">
+                  <input type="submit" hidden id="confSubmit' . $counter . '">
+                  <label style="display:inline" for="confSubmit' . $counter . '" tabindex="0">
+                    <small class="float-sm-right tabhead"><i class="far fa-trash-alt fa-2x"></i></small>
+                  </label>
+                </form>
               </div>
             </div>
           </div>';
@@ -345,6 +387,72 @@ foreach($stmt->fetchAll() as $row)
     */   
 }
 ?>
+
+
+
+
+  <!-- Deletion Confirm Modal -->
+  <div class="modal fade" id="confirmDelete" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h6>Are you sure you want to delete this row?</h6>
+          <p>
+            <div id="custName"></div>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <label for="submitDelete" class="btn btn-primary" tabindex="0">Yes</label>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal fade" id="success" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Success!</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>The row was successfully deleted.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div class="modal fade" id="error" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Error!</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>There was an error deleting the row.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
