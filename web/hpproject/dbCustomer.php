@@ -23,20 +23,14 @@ if (isset($_POST['rowConfId'])) {
 
 
 if (isset($_POST['rowId'])) {
-
-  echo 'Made it!';
-  echo $_POST['rowId'];
-
   //Call function in "functions.php" that will delete all rows with reference to this customer
   //Return of 0 indicates failure, 1 indicates success
   if (deleteCustomer($db,$_POST['rowId'])) {
-    echo "if";
     //Success
     echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
     $_SESSION['dbFail'] = true;
   }
   else {
-    echo "else";
     //Error
     echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
     $_SESSION['dbFail'] = true;
