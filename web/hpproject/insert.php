@@ -44,20 +44,17 @@ if (isset($_POST['cname']))
       $insert->bindValue(':region',emptyToNull($_POST['cregion']),PDO::PARAM_STR);
       $insert->bindValue(':type',emptyToNull($_POST['ctype']),PDO::PARAM_STR);
       $insert->bindValue(':notes',emptyToNull($_POST['cnotes']),PDO::PARAM_STR);
-      
-      if (!$insert->execute())
-      {
-          echo '<script>
-                  $(window).on("load", function(){ $("#error").modal("show"); });
-                </script>';
-          
-          $_SESSION['dbFail'] = true;
-      }
-      else
-      {
-          echo '<script>  $(window).on("load", function(){ $("#success").modal("show"); });  </script>';
-          $_SESSION['dbFail'] = false;
-      }
+
+   if (!$insert->execute())
+  {
+      echo '<script>  $(window).on("load", function(){ $("#error").modal("show"); });  </script>';
+      $_SESSION['dbFail'] = true;
+  }
+  else
+  {
+    echo '<script>  $(window).on("load", function(){ $("#success").modal("show"); });  </script>';
+    $_SESSION['dbFail'] = false;
+  }     
 }
 
   //Employee Insert
@@ -126,43 +123,41 @@ if (isset($_POST['cname']))
 
       if (!$insert->execute())
       {
-          echo '<script>
-                  $(window).on("load", function(){ $("#error").modal("show"); });
-                </script>';
-          
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
       {
-          echo '<script>  $(window).on("load", function(){ $("#success").modal("show"); });  </script>';
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = false;
+      }
+
+  }
+
+
+
+  //Solution Inserts
+  if (isset($_POST['soname'])) {
+     $insert = $db->prepare('INSERT INTO solution VALUES
+                             (
+                                DEFAULT,
+                                :name,
+                                :type
+                             )');
+     $insert->bindValue(':name',emptyToNull($_POST['soname']), PDO::PARAM_STR);
+     $insert->bindValue(':type',emptyToNull($_POST['sotype']), PDO::PARAM_STR);
+
+      if (!$insert->execute())
+      {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      }
+      else
+      {
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = false;
       }
   }
-
-if (isset($_POST['soname'])) {
-  $insert = $db->prepare('INSERT INTO solution VALUES
-                          (
-                            DEFAULT,
-                            :name,
-                            :type
-                          )');
-  $insert->bindValue(':name',emptyToNull($_POST['soname']), PDO::PARAM_STR);
-  $insert->bindValue(':type',emptyToNull($_POST['sotype']), PDO::PARAM_STR);
-
-  if (!$insert->execute())
-  {
-      echo '<script>
-              $(window).on("load", function(){ $("#error").modal("show"); });
-            </script>';
-          
-      $_SESSION['dbFail'] = true;
-  }
-  else
-  {
-      echo '<script>  $(window).on("load", function(){ $("#success").modal("show"); });  </script>';
-      $_SESSION['dbFail'] = false;
-  }
-}
 
 
 ?>
@@ -326,7 +321,6 @@ $(document).ready(function() {
 
     $('#confirmPrinter').modal('show');
   }
-
 
 </script>
 
