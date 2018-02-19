@@ -47,17 +47,22 @@ if (isset($_POST['cname']))
       $insert->bindValue(':type',emptyToNull($_POST['ctype']),PDO::PARAM_STR);
       $insert->bindValue(':notes',emptyToNull($_POST['cnotes']),PDO::PARAM_STR);
 
-      if (!$insert->execute())
-      {
+      try {
+        if (!$insert->execute())
+        {
           echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
-      }
-      else
-      {
+        }
+        else
+        {
           echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = false;
+        }
       }
-
+      catch (PDOException $ex) {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      } 
 }
 
 echo 'Hello World #2';
@@ -132,17 +137,22 @@ echo 'Hello World #2';
       $insert->bindValue(':connection_inspector',emptyToNull($_POST['pconnection_inspector']),PDO::PARAM_STR);
       $insert->bindValue(':is_a4',emptyToNull($_POST['pis_a4']),PDO::PARAM_STR);
 
-      if (!$insert->execute())
-      {
+      try {
+        if (!$insert->execute())
+        {
           echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
-      }
-      else
-      {
+        }
+        else
+        {
           echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = false;
+        }
       }
-
+      catch (PDOException $ex) {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      } 
   }
 
 
@@ -157,15 +167,21 @@ echo 'Hello World #2';
      $insert->bindValue(':name',emptyToNull($_POST['soname']), PDO::PARAM_STR);
      $insert->bindValue(':type',emptyToNull($_POST['sotype']), PDO::PARAM_STR);
 
-      if (!$insert->execute())
-      {
+      try {
+        if (!$insert->execute())
+        {
           echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
-      }
-      else
-      {
+        }
+        else
+        {
           echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = false;
+        }
+      }
+      catch (PDOException $ex) {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
       }
   }
 
