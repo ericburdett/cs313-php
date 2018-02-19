@@ -68,7 +68,8 @@ CREATE TABLE customer_location (
     customer_id INT CONSTRAINT customer_location_nn1 NOT NULL,
     location_id INT CONSTRAINT customer_location_nn2 NOT NULL,
     CONSTRAINT customer_location_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id),
-    CONSTRAINT customer_location_fk2 FOREIGN KEY (location_id) REFERENCES location(id)
+    CONSTRAINT customer_location_fk2 FOREIGN KEY (location_id) REFERENCES location(id),
+    CONSTRAINT customer_location_un1 UNIQUE (customer_id,location_id)
 );
 
 CREATE TABLE customer_contact (
@@ -101,7 +102,8 @@ CREATE TABLE customer_employee (
     customer_id INT CONSTRAINT customer_employee_nn1 NOT NULL,
     employee_id INT CONSTRAINT customer_employee_nn2 NOT NULL, 
     CONSTRAINT customer_employee_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id),
-    CONSTRAINT customer_employee_fk2 FOREIGN KEY (employee_id) REFERENCES employee(id)
+    CONSTRAINT customer_employee_fk2 FOREIGN KEY (employee_id) REFERENCES employee(id),
+    CONSTRAINT customer_employee_un1 UNIQUE (customer_id, employee_id)
 );
 
 CREATE TABLE scanner (
