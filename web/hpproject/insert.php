@@ -592,7 +592,7 @@ $(document).ready(function() {
     </div>
   </div>
 
-  <!-- Error Modal -->
+  <!-- Success Modal -->
   <div class="modal fade" id="error" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
