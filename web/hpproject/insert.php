@@ -80,15 +80,12 @@ if (isset($_POST['cname']))
       
       if (!$insert->execute())
       {
-          echo '<script>
-                  $(window).on("load", function(){ $("#error").modal("show"); });
-                </script>';
-          
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
       {
-          echo '<script>  $(window).on("load", function(){ $("#success").modal("show"); });  </script>';
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
           $_SESSION['dbFail'] = false;
       }
   }
@@ -573,10 +570,7 @@ $(document).ready(function() {
     </div>
   </div>
 
-
 </div>
-
-
 
 
   <!-- Success Modal -->
@@ -597,7 +591,6 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-</div>
 
   <!-- Error Modal -->
   <div class="modal fade" id="error" role="dialog">
@@ -617,7 +610,6 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-</div>
 
 
   <!-- Customer Confirm Modal -->
@@ -715,7 +707,6 @@ $(document).ready(function() {
       
     </div>
   </div>
-</div>
 
   <!-- Solution Confirm Modal -->
   <div class="modal fade" id="confirmSolution" role="dialog">
