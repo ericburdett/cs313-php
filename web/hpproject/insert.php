@@ -2,6 +2,8 @@
 require 'header.php';
 require 'functions.php';
 
+echo 'Hello World';
+
 //Queries
 $custType = $db->prepare('SELECT unnest(enum_range(NULL::customerType)) AS name');
 $custType->execute();
@@ -45,17 +47,20 @@ if (isset($_POST['cname']))
       $insert->bindValue(':type',emptyToNull($_POST['ctype']),PDO::PARAM_STR);
       $insert->bindValue(':notes',emptyToNull($_POST['cnotes']),PDO::PARAM_STR);
 
-   if (!$insert->execute())
-  {
-//      echo '<script>  $(window).on("load", function(){ $("#error").modal("show"); });  </script>';
-      $_SESSION['dbFail'] = true;
-  }
-  else
-  {
-    echo '<script>  $(window).on("load", function(){ $("#success").modal("show"); });  </script>';
-    $_SESSION['dbFail'] = false;
-  }     
+      if (!$insert->execute())
+      {
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = true;
+      }
+      else
+      {
+          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          $_SESSION['dbFail'] = false;
+      }
+
 }
+
+echo 'Hello World #2';
 
   //Employee Insert
   if (isset($_POST['ename']))
@@ -77,7 +82,7 @@ if (isset($_POST['cname']))
       
       if (!$insert->execute())
       {
-//          echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
@@ -123,7 +128,7 @@ if (isset($_POST['cname']))
 
       if (!$insert->execute())
       {
- //         echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
@@ -133,7 +138,6 @@ if (isset($_POST['cname']))
       }
 
   }
-
 
 
   //Solution Inserts
@@ -149,7 +153,7 @@ if (isset($_POST['cname']))
 
       if (!$insert->execute())
       {
-  //        echo '<script> $(window).on("load", function(){ $("#success").modal("show"); }); </script>';
+          echo '<script> $(window).on("load", function(){ $("#error").modal("show"); }); </script>';
           $_SESSION['dbFail'] = true;
       }
       else
