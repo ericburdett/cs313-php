@@ -12,8 +12,8 @@ require 'functions.php';
 
 if (isset($_POST['rowConfId'])) {
   echo '<form action="#" method="POST">
-          <input type="text" name="rowId" value="' . $_POST['rowConfId'] . '">
-          <input type="submit"  id="submitDelete">
+          <input type="text" hidden name="rowId" value="' . $_POST['rowConfId'] . '">
+          <input type="submit" hidden id="submitDelete">
         </form>';
 
   echo '<script>

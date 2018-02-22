@@ -377,7 +377,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Troy Burdett',
     'troy.burdett@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'TC',
     'West'
 );
@@ -387,7 +387,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Iron Man',
     'ironman@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'AM',
     'West'
 );
@@ -397,7 +397,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Lil'' Sebastian',
     'minihorse@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'AM',
     'East'
 );
@@ -407,7 +407,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Dwight Schrute',
     'bearsbeatsbattlestargalactica@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'TC',
     'East'
 );
@@ -417,7 +417,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Michael Scott',
     'MichaelScott@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'AM',
     'South'
 );
@@ -427,7 +427,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Jim Halpert',
     'jimbo@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'AM',
     'West'
 );
@@ -437,7 +437,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Kevin Malone',
     'ihearthotdogs@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'TC',
     'West'
 );
@@ -447,7 +447,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Creed Bratton',
     'mungseeds@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'TC',
     'South'
 );
@@ -457,7 +457,7 @@ INSERT INTO employee VALUES
     DEFAULT,
     'Pam Beesley',
     'pam@hp.com',
-    '$e5%0k2099jabe59xkq',
+    '$2y$10$LVxa/8zga2RtVbITpcsDdOcMR2uFfkfpldKCTmsL4xwwsfMdkr3yq',
     'ISR',
     'South'
 );
