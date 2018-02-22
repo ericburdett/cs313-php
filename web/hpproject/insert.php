@@ -79,6 +79,8 @@ if (isset($_POST['cname']))
   //Employee Insert
   if (isset($_POST['ename']))
   {
+      $passwordHash = password_hash(emptyToNull($_POST['epassword']),PASSWORD_DEFAULT);
+
       $insert = $db->prepare('INSERT INTO employee VALUES
                               (
                                   DEFAULT,
@@ -90,7 +92,7 @@ if (isset($_POST['cname']))
                               )');
       $insert->bindValue(':name',emptyToNull($_POST['ename']),PDO::PARAM_STR);
       $insert->bindValue(':email',emptyToNull($_POST['eemail']),PDO::PARAM_STR);
-      $insert->bindValue(':password',emptyToNull($_POST['epassword']),PDO::PARAM_STR);
+      $insert->bindValue(':password',$passwordHash,PDO::PARAM_STR);
       $insert->bindValue(':type',emptyToNull($_POST['etype']),PDO::PARAM_STR);
       $insert->bindValue(':region',emptyToNull($_POST['eregion']),PDO::PARAM_STR);
       

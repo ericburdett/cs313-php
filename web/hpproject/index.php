@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['started'])) {
+if ($_SESSION['started']) {
     header('Location: home.php');
 }
 ?>
@@ -26,14 +26,15 @@ if (isset($_SESSION['started'])) {
       <form action="authenticate.php" method="POST">
         <div class="form-group hp-center">
           <img class="hp-center" src="hp.png" height="160px" width="160px">
+          <?php if ($_SESSION['invalid']) { echo '<br/><p style="color:red">*Invalid email or password</p>'; } ?>
         </div>
         <div class="form-group">
           <!--<span class="icon-wrapper"><i class="fas fa-user"></span></i>-->
-          <input type="email" placeholder="Email" class="form-control ibox" id="email">
+          <input type="email" placeholder="Email" class="form-control ibox" name="email">
         </div>
         <div class="form-group">
           <!--<i class="fas fa-lock"></i>-->
-          <input type="password" placeholder="Password" class="form-control ibox" id="pwd">
+          <input type="password" placeholder="Password" class="form-control ibox" name="pwd">
         </div>
         <div class="form-group">
           <input type="submit" value="Login" class="btn btn-primary btn-block">
