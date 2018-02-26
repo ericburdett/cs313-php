@@ -1,3 +1,10 @@
+<html>
+<head>
+  <title>Insert</title>
+</head>
+
+
+
 <?php
 require 'header.php';
 require 'functions.php';
@@ -628,6 +635,9 @@ $(document).ready(function() {
   }
 
 </script>
+
+
+<body>
 
 <div class="row">
 
@@ -1580,3 +1590,8 @@ $(document).ready(function() {
       
     </div>
   </div>
+
+
+
+</body>
+</html>

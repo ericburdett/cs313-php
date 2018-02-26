@@ -81,6 +81,14 @@ h4 {
     color: white;
 }
 
+tabEntry {
+    color: #343A40;
+}
+
+.tabEntry:hover {
+    color: black;
+}
+
 .btn-primary {
     border-color:#343A40;
     color:#CCCECF;
@@ -105,4 +113,21 @@ h6 {
 .left {
     text-align:left;
     margin:5px;
+}
+
+.fa {
+    display:inline;
+}
+
+.nowrap {
+    width:100px;
+    text-align: right;
+    float:right;
+}
+
+.nowrap span {
+    white-space: nowrap;
+    float: right;
+    padding-right:5px;
+    padding-left:5px;
 }

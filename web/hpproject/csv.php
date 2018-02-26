@@ -3,6 +3,7 @@ session_start();
 ?>
 <html>
 <head>
+  <title>Insert with CSV</title>
 </head>
 
 <?php

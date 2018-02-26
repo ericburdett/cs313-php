@@ -67,8 +67,8 @@ CREATE TABLE customer_location (
     id SERIAL CONSTRAINT customer_location_pk PRIMARY KEY,
     customer_id INT CONSTRAINT customer_location_nn1 NOT NULL,
     location_id INT CONSTRAINT customer_location_nn2 NOT NULL,
-    CONSTRAINT customer_location_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id),
-    CONSTRAINT customer_location_fk2 FOREIGN KEY (location_id) REFERENCES location(id),
+    CONSTRAINT customer_location_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE,
+    CONSTRAINT customer_location_fk2 FOREIGN KEY (location_id) REFERENCES location(id) ON DELETE CASCADE,
     CONSTRAINT customer_location_un1 UNIQUE (customer_id,location_id)
 );
 
@@ -83,7 +83,7 @@ CREATE TABLE customer_contact (
     mobile_phone VARCHAR(50),
     main_contact BOOLEAN,
     notes VARCHAR(8000),
-    CONSTRAINT customer_contact_fk2 FOREIGN KEY (customer_id) REFERENCES customer(id)
+    CONSTRAINT customer_contact_fk2 FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE
 );
 
 CREATE TABLE employee (
@@ -101,8 +101,8 @@ CREATE TABLE customer_employee (
     id SERIAL CONSTRAINT customer_employee_pk PRIMARY KEY,
     customer_id INT CONSTRAINT customer_employee_nn1 NOT NULL,
     employee_id INT CONSTRAINT customer_employee_nn2 NOT NULL, 
-    CONSTRAINT customer_employee_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id),
-    CONSTRAINT customer_employee_fk2 FOREIGN KEY (employee_id) REFERENCES employee(id),
+    CONSTRAINT customer_employee_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE,
+    CONSTRAINT customer_employee_fk2 FOREIGN KEY (employee_id) REFERENCES employee(id) ON DELETE CASCADE,
     CONSTRAINT customer_employee_un1 UNIQUE (customer_id, employee_id)
 );
 
@@ -142,8 +142,8 @@ CREATE TABLE customer_scanner (
     qty_in_fleet INT CONSTRAINT customer_scanner_nn3 NOT NULL,
     fs4 boolean,
     notes VARCHAR(8000),
-    CONSTRAINT customer_scanner_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id),
-    CONSTRAINT customer_scanner_fk2 FOREIGN KEY (scanner_id) REFERENCES scanner(id)
+    CONSTRAINT customer_scanner_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE,
+    CONSTRAINT customer_scanner_fk2 FOREIGN KEY (scanner_id) REFERENCES scanner(id) ON DELETE CASCADE
 );
 
 CREATE TABLE customer_printer (
@@ -153,8 +153,8 @@ CREATE TABLE customer_printer (
     qty_in_fleet INT CONSTRAINT customer_printer_nn3 NOT NULL,
     fs4 boolean,
     notes VARCHAR(8000),
-    CONSTRAINT customer_printer_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id),
-    CONSTRAINT customer_printer_fk2 FOREIGN KEY (printer_id) REFERENCES printer(id)
+    CONSTRAINT customer_printer_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE,
+    CONSTRAINT customer_printer_fk2 FOREIGN KEY (printer_id) REFERENCES printer(id) ON DELETE CASCADE
 );
 
 CREATE TABLE solution (
@@ -171,8 +171,8 @@ CREATE TABLE customer_solution (
     version VARCHAR(250),
     qty_licenses INT,
     notes VARCHAR(8000),
-    CONSTRAINT customer_solution_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id),
-    CONSTRAINT customer_solution_fk2 FOREIGN KEY (solution_id) REFERENCES solution(id)
+    CONSTRAINT customer_solution_fk1 FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE,
+    CONSTRAINT customer_solution_fk2 FOREIGN KEY (solution_id) REFERENCES solution(id) ON DELETE CASCADE
 );
 
 
@@ -1042,3 +1042,24 @@ FROM customer c INNER JOIN customer_location cl
 ON c.id = cl.customer_id INNER JOIN location l
 ON l.id = cl.location_id 
 WHERE c.id = 1;
+
+
+
+
+
+
+UPDATE printer SET
+                            model_name = ,
+                            class = :class,
+                            firm = :firm,
+                            mfp = :mfp,
+                            color = :color,
+                            duplex = :duplex,
+                            supports_sm = :supports_sm,
+                            sm_inst_on_cap = :sm_inst_on_cap,
+                            sure_start = :sure_start,
+                            whitelisting = :whitelisting,
+                            run_time_int_det = :run_time_int_det,
+                            connection_inspector = :connection_inspector,
+                            is_a4 = :is_a4
+                            WHERE id = :id
